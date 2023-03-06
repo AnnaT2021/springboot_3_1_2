@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Users List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Представляем наших участников</h1>
+<br/><br/>
+<div>
+
+      <table border="1">
+        <tr>
+            <th>---ID---</th>
+            <th>---First Name---</th>
+            <th>---Last Name---</th>
+            <th>---City---</th>
+            <th>---Actions---</th>
+        </tr>
+        <tr th:each ="user : ${users}">
+            <th><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.id}"></a></th>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.city}"></td>
+            <th><a th:href="@{/users/{id}/edit (id=${user.id})}" th:text="Update"></a>
+            <br>
+                <a th:href="@{/users/{id}/delete (id=${user.id})}" th:text="Delete"></a>
+            </th>
+        </tr>
+    </table>
+    <br/><br/>
+<p>Добавьте нового участника</p>
+    <form action="users/add" target="_blank">
+        <button>Новый участник</button></form>
+</div>
+</body>
+</html>
